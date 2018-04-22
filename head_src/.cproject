@@ -93,6 +93,9 @@
 		</cconfiguration>
 		<cconfiguration id="cdt.managedbuild.config.gnu.mingw.exe.debug.1282355964.371876073">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.mingw.exe.debug.1282355964.371876073" moduleId="org.eclipse.cdt.core.settings" name="Debug - guihead">
+				<macros>
+					<stringMacro name="ArchType" type="VALUE_TEXT" value="i386"/>
+				</macros>
 				<externalSettings/>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.PE" point="org.eclipse.cdt.core.BinaryParser"/>
@@ -209,5 +212,7 @@
 			<resource resourceType="PROJECT" workspacePath="/launch4j-head-eclipse"/>
 		</configuration>
 	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+		<buildTargets/>
+	</storageModule>
 </cproject>
