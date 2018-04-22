@@ -51,21 +51,6 @@ struct
 
 struct
 {
-	int runtimeBits;
-	int foundJava;
-	BOOL bundledJreAsFallback;
-	BOOL corruptedJreFound;
-	char originalJavaMinVer[STR];
-	char originalJavaMaxVer[STR];
-	char javaMinVer[STR];
-	char javaMaxVer[STR];
-	char foundJavaVer[STR];
-	char foundJavaKey[_MAX_PATH];
-	char foundJavaHome[_MAX_PATH];
-} search;
-
-struct
-{
 	char mainClass[_MAX_PATH];
 	char cmd[_MAX_PATH];
 	char args[MAX_ARGS];
@@ -352,6 +337,7 @@ void formatJavaVersion(char* version, const char* originalVersion) {
 	int curPartLen;
 	while ((curPartLen = findNextVersionPart(pos)) > 0) {
 		char number[curPartLen + 1];
+		memset(number, 0, curPartLen + 1);
 		strncpy(number, pos, curPartLen);
 
 		if (partsAdded == 0 && (curPartLen != 1 || number[0] != '1')) {
@@ -378,7 +364,7 @@ void formatJavaVersion(char* version, const char* originalVersion) {
 				strcat(version, "0");
 			}
 			strcat(version, number);
-		} else if (partsAdded == JRE_VER_MAX_DIGITS_PER_PART + 1) {
+		} else if (partsAdded == 4) {
 			// TODO: Add warning
 			break;
 		}

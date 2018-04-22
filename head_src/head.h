@@ -95,6 +95,21 @@
 
 typedef void (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
 
+struct
+{
+	int runtimeBits;
+	int foundJava;
+	BOOL bundledJreAsFallback;
+	BOOL corruptedJreFound;
+	char originalJavaMinVer[STR];
+	char originalJavaMaxVer[STR];
+	char javaMinVer[STR];
+	char javaMaxVer[STR];
+	char foundJavaVer[STR];
+	char foundJavaKey[_MAX_PATH];
+	char foundJavaHome[_MAX_PATH];
+} search;
+
 BOOL initGlobals();
 FILE* openLogFile(const char* exePath, const int pathLen);
 void closeLogFile();
