@@ -65,7 +65,7 @@
                             							
                             <tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug.256530888" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug">
                                 								
-                                <option id="gnu.c.link.option.paths.2104292665" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths"/>
+                                <option id="gnu.c.link.option.paths.2104292665" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false"/>
                                 								
                                 <inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1752322531" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
                                     									

@@ -66,6 +66,15 @@ static MunitResult expectJava8VerWithUpdatePart3digitsParsedCorrectly(
 	return MUNIT_OK;
 }
 
+static MunitResult expectEmptyVersionStringWillStayEmpty(
+		const MunitParameter params[], void* data) {
+	char result[20];
+	formatJavaVersion(result, "");
+
+	munit_assert_string_equal("", result);
+	return MUNIT_OK;
+}
+
 static MunitResult expectJava9Ver1PartParseCorrectly(
 		const MunitParameter params[], void* data) {
 	char result[20];
@@ -131,49 +140,52 @@ static MunitResult expectJava10CouldBeFoundInRegistry(
 	return MUNIT_OK;
 }
 
-static MunitTest test_suite_tests[] =
-  {
-    { (char*) "/regression/expectJava8VerWithoutUpdatePartParseCorrectly",
-	expectJava8VerWithoutUpdatePartParseCorrectly,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+static MunitTest test_suite_tests[] = { {
+		(char*) "/regression/expectJava8VerWithoutUpdatePartParseCorrectly",
+		expectJava8VerWithoutUpdatePartParseCorrectly,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { (char*) "/regression/expectJava8VerWithUpdatePartParsedCorrectly",
-	expectJava8VerWithUpdatePart2digitsParsedCorrectly,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+{ (char*) "/regression/expectJava8VerWithUpdatePartParsedCorrectly",
+		expectJava8VerWithUpdatePart2digitsParsedCorrectly,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { (char*) "/regression/expectJava8VerWithUpdatePart3digitsParsedCorrectly",
-	expectJava8VerWithUpdatePart3digitsParsedCorrectly,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+{ (char*) "/regression/expectJava8VerWithUpdatePart3digitsParsedCorrectly",
+		expectJava8VerWithUpdatePart3digitsParsedCorrectly,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { (char*) "/java9/expectJava9Ver1PartParseCorrectly",
-	expectJava9Ver1PartParseCorrectly,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+{ (char*) "/regression/expectEmptyVersionStringWillStayEmpty",
+		expectEmptyVersionStringWillStayEmpty,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { (char*) "/java9/expectJava9Ver2PartsParseCorrectly",
-	expectJava9Ver2PartsParseCorrectly,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+{ (char*) "/java9/expectJava9Ver1PartParseCorrectly",
+		expectJava9Ver1PartParseCorrectly,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { (char*) "/java9/expectJava9Ver3Parts2digitsParseCorrectly",
-	expectJava9Ver3Parts2digitsParseCorrectly,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+{ (char*) "/java9/expectJava9Ver2PartsParseCorrectly",
+		expectJava9Ver2PartsParseCorrectly,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { (char*) "/java9/expectJava9Ver3Parts3digitsParseCorrectly",
-	expectJava9Ver3Parts3digitsParseCorrectly,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+{ (char*) "/java9/expectJava9Ver3Parts2digitsParseCorrectly",
+		expectJava9Ver3Parts2digitsParseCorrectly,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { (char*) "/java9/expectJava9Ver4PlusPartsIgnored",
-	expectJava9Ver4PlusPartsIgnored,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+{ (char*) "/java9/expectJava9Ver3Parts3digitsParseCorrectly",
+		expectJava9Ver3Parts3digitsParseCorrectly,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { (char*) "/java9/expectJava10CanBeParsedCorrectly",
-    expectJava10CanBeParsedCorrectly,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+{ (char*) "/java9/expectJava9Ver4PlusPartsIgnored",
+		expectJava9Ver4PlusPartsIgnored,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { (char*) "/registry/expectJava10CouldBeFoundInRegistry",
-	expectJava10CouldBeFoundInRegistry,
-	NULL, NULL, MUNIT_TEST_OPTION_NONE,	NULL },
+{ (char*) "/java9/expectJava10CanBeParsedCorrectly",
+		expectJava10CanBeParsedCorrectly,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
 
-    { NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL } };
+{ (char*) "/registry/expectJava10CouldBeFoundInRegistry",
+		expectJava10CouldBeFoundInRegistry,
+		NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
+
+{ NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL } };
 
 static const MunitSuite test_suite = { (char*) "", test_suite_tests,
 NULL, 1, MUNIT_SUITE_OPTION_NONE };

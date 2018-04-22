@@ -330,8 +330,11 @@ int findNextVersionPart(const char* startAt) {
 #define JRE_VER_MAX_DIGITS_PER_PART 3
 void formatJavaVersion(char* version, const char* originalVersion) {
 	strcpy(version, "");
-	int partsAdded = 0;
+	if (originalVersion == NULL || strlen(originalVersion) == 0) {
+		return;
+	}
 
+	int partsAdded = 0;
 	int i;
 	char* pos = (char*) originalVersion;
 	int curPartLen;
