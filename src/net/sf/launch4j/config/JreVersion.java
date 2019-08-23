@@ -19,19 +19,14 @@ public class JreVersion implements Comparable<JreVersion> {
 			return ret;
 		}
 		if (!versionStr.matches(Jre.VERSION_PATTERN)) {
-			// TODO: Move to message to messages file and use Validator.checkTrue or
-			// something like that used throughout the rest of application
-			throw new IllegalArgumentException(
-					"JRE version is of a wrong format. It should be either x.x.x[_xx] or x.x.x");
+			// NOTE: This is actually shouldn't happen because version format had to be
+			// checked by Jre#checkInvariants BEFORE calling this method
+			throw new IllegalArgumentException("JRE version is not in a right format.");
 		}
-
-		// TODO: Add full support to all crazy possible version formats. Official regex:
-		// [1-9][0-9]*((\.0)*\.[1-9][0-9]*)*
-		// see: http://openjdk.java.net/jeps/223
 
 		String[] parts = versionStr.split("[\\._]");
 		int first = Integer.parseInt(parts[0]);
-		if (first >= 9) {
+		if (first > 1) {
 			// java 9+ version schema
 			ret.x1 = 1;
 			ret.x2 = first;
@@ -44,11 +39,14 @@ public class JreVersion implements Comparable<JreVersion> {
 		} else {
 			// java <= 1.8 version schema
 			ret.x1 = first;
-
-			ret.x2 = Integer.parseInt(parts[1]);
-			ret.x3 = Integer.parseInt(parts[2]);
-			if (parts.length == 4) {
-				ret.x4 = Integer.parseInt(parts[3]);
+			if (parts.length >= 2) {
+				ret.x2 = Integer.parseInt(parts[1]);
+				if (parts.length >= 3) {
+					ret.x3 = Integer.parseInt(parts[2]);
+					if (parts.length == 4) {
+						ret.x4 = Integer.parseInt(parts[3]);
+					}
+				}
 			}
 		}
 
@@ -58,10 +56,10 @@ public class JreVersion implements Comparable<JreVersion> {
 	@Override
 	public String toString() {
 		if (x2 >= 9) {
-			return "" + x2 + "." + x3 + "." + x4;
+			return x2 + "." + x3 + "." + x4;
 		}
 
-		return "" + x1 + "." + x2 + "." + x3 + (x4 > 0 ? "_" + x4 : "");
+		return x1 + "." + x2 + "." + x3 + (x4 > 0 ? "_" + x4 : "");
 	}
 
 	@Override
@@ -77,21 +75,28 @@ public class JreVersion implements Comparable<JreVersion> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		JreVersion other = (JreVersion) obj;
-		if (x1 != other.x1)
+		if (x1 != other.x1) {
 			return false;
-		if (x2 != other.x2)
+		}
+		if (x2 != other.x2) {
 			return false;
-		if (x3 != other.x3)
+		}
+		if (x3 != other.x3) {
 			return false;
-		if (x4 != other.x4)
+		}
+		if (x4 != other.x4) {
 			return false;
+		}
 		return true;
 	}
 
@@ -114,7 +119,6 @@ public class JreVersion implements Comparable<JreVersion> {
 			return x4 - o.x4;
 		}
 
-		throw new IllegalStateException(
-				"We shouldn't be here, it would mean versions are equald and shouldn't been handled by equals check");
+		throw new IllegalStateException("If you see this exception it means JreVersion::equals() method is buggy");
 	}
 }
