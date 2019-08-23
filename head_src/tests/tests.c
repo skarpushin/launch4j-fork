@@ -45,7 +45,7 @@ static MunitResult expectJava8VerWithoutUpdatePartParseCorrectly(
 
 	formatJavaVersion(result, testData);
 
-	munit_assert_string_equal(testData, result);
+	munit_assert_string_equal("1.008.000", result);
 	return MUNIT_OK;
 }
 
@@ -56,7 +56,7 @@ static MunitResult expectJava8VerWithUpdatePart2digitsParsedCorrectly(
 
 	formatJavaVersion(result, testData);
 
-	munit_assert_string_equal("1.8.0_045", result);
+	munit_assert_string_equal("1.008.000_045", result);
 	return MUNIT_OK;
 }
 
@@ -67,7 +67,7 @@ static MunitResult expectJava8VerWithUpdatePart3digitsParsedCorrectly(
 
 	formatJavaVersion(result, testData);
 
-	munit_assert_string_equal(testData, result);
+	munit_assert_string_equal("1.008.000_151", result);
 	return MUNIT_OK;
 }
 
@@ -78,7 +78,7 @@ static MunitResult expectJava9Ver1PartParseCorrectly(
 
 	formatJavaVersion(result, testData);
 
-	munit_assert_string_equal("1.9.0", result);
+	munit_assert_string_equal("1.009.000", result);
 	return MUNIT_OK;
 }
 
@@ -89,7 +89,7 @@ static MunitResult expectJava9Ver2PartsParseCorrectly(
 
 	formatJavaVersion(result, testData);
 
-	munit_assert_string_equal("1.9.34", result);
+	munit_assert_string_equal("1.009.034", result);
 	return MUNIT_OK;
 }
 
@@ -100,7 +100,7 @@ static MunitResult expectJava9Ver3Parts2digitsParseCorrectly(
 
 	formatJavaVersion(result, testData);
 
-	munit_assert_string_equal("1.9.34_054", result);
+	munit_assert_string_equal("1.009.034_054", result);
 	return MUNIT_OK;
 }
 
@@ -111,7 +111,7 @@ static MunitResult expectJava9Ver3Parts3digitsParseCorrectly(
 
 	formatJavaVersion(result, testData);
 
-	munit_assert_string_equal("1.9.34_123", result);
+	munit_assert_string_equal("1.009.034_123", result);
 	return MUNIT_OK;
 }
 
@@ -122,7 +122,7 @@ static MunitResult expectJava9Ver4PlusPartsIgnored(
 
 	formatJavaVersion(result, testData);
 
-	munit_assert_string_equal("1.9.34_123", result);
+	munit_assert_string_equal("1.009.034_123", result);
 	return MUNIT_OK;
 }
 
