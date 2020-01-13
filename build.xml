@@ -1,77 +1,25 @@
-<project name="launch4j" default="compile" basedir=".">
-	<property name="src" location="src" />
-	<property name="lib" location="lib" />
-	<property name="build" location="build" />
-	<property name="jar" location="./${ant.project.name}.jar" />
-	<property name="launch4j.dir" location="." />
-	<property name="maven" location="maven" />
-	<property file="${src}/launch4j.properties"/>
+-----BEGIN PGP PUBLIC KEY BLOCK----- Version: GnuPG v1
 
-	<path id="dist.classpath">
-		<pathelement path="${build}" />
-		<fileset dir="${lib}">
-			<include name="**/*.jar" />
-		</fileset>
-	</path>
-
-	<target name="init">
-		<tstamp />
-		<mkdir dir="${build}" />
-	</target>
-
-	<target name="compile" depends="init" description="compile the source">
-		<javac srcdir="${src}" destdir="${build}" classpathref="dist.classpath" source="1.6" debug="on" includeantruntime="false" />
-		<copy todir="${build}/images">
-			<fileset dir="${src}/images">
-				<include name="**/*" />
-			</fileset>
-		</copy>
-		<copy todir="${build}">
-			<fileset dir="${src}">
-				<include name="**/*.properties" />
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="jar" depends="compile" description="create jar">
-		<fileset dir="${lib}" id="lib.dist.fileset">
-			<include name="**/*.jar" />
-		</fileset>
-		<pathconvert pathsep=" " property="dist.classpath" refid="lib.dist.fileset">
-			<map from="${lib}" to="./lib" />
-		</pathconvert>
-		<!-- Put everything in ${build} into a jar file -->
-		<jar jarfile="${jar}">
-			<fileset dir="${build}" excludes="**/messages_es.properties" />
-			<manifest>
-				<attribute name="Main-Class" value="net.sf.launch4j.Main" />
-				<attribute name="Class-Path" value=". ${dist.classpath}" />
-			</manifest>
-		</jar>
-	</target>
-
-	<target name="demo" depends="jar" description="build the demos">
-		<ant dir="./demo/ConsoleApp" inheritAll="false" />
-		<ant dir="./demo/SimpleApp" inheritAll="false" />
-	</target>
-
-	<target name="clean" description="clean up">
-		<delete dir="${build}" />
-		<delete file="${jar}" />
-		<ant dir="./demo/ConsoleApp" target="clean" inheritAll="false" />
-		<ant dir="./demo/SimpleApp" target="clean" inheritAll="false" />
-	</target>
-	
-	<target name="switch-to-maven" description="switch project to maven">
-		<copy todir="." overwrite="true">
-			<fileset dir="${maven}">
-				<include name="**/*" />
-			</fileset>
-		</copy>
-		<replace file="./pom.xml">
-			<replacefilter token="$${launch4j.version}" value="${version}"/>
-		</replace>
-		<delete dir="${lib}" />
-		<mkdir dir="./target" />
-	</target>
-</project>
+mQENBFTilRwBCADmxk9GpyZqo1dMwFz2406xUFiHF/76sqEuStGGHpv082jIPEqY
+veH5x8xgFNfDp3Zliak2AD2gGuDkJGRcXshBfu2B2Dz4GxS8p4gLZAWYmfg1QRhT
+EDjhV84F7zLlvr9BsRiY4xJ2ad9d8oB1BhhveSje2NNASeTn5gpilf6vKVRy07xi
+ORJQdaTjATBWa3RWPriZ5hASrRZi0HxvaWQXAIOa4W4IlG/Ni3HimMPjS3eAFM/Z
+emmmzh405uMlNHbnW9Q1ktUmzT2bDovCouH6Y8ngkNdLpcqJG1ZFT3EHp2FdFoQ/
+uB8DYAJpdg4m7bUXvseon3dIljUlyuhGMAdtABEBAAG0HWNsdWNrZXIgPGNsdWNr
+ZXJAaG90bWFpbC5jb20+iQE8BBMBCgAmBQJU4pUcAhsDBQkJZzRUBQsJCAcDBRUK
+CQgLBBYCAQACHgECF4AACgkQI/m8bTSE8Wd08QgAs6MJBNmRF7p+u0F4hQaybWKH
+FM3W1sgWhZm9hU4yHnzRgazDZupOZ0nAw/u3au8adiw3CZ9oj5C0U6exqf8X3qaj
+fkijZgE6FL6sUnEH6zRTHyxpUFhJ+F2fpcc6XBkkBgLqOL73heWbsjfyjvkGhig9
+YODX85S2oHSKL+kDjTj8Q1iqFYbxq8UNy3AjlmRA5l0A+kuDzL1s1VzPcLWJ5Odj
+U4SO+GhX62GOi4GKWg09qLsIEcQLkZZ3FicWyWmA8OBTCVGII+URV2UoXCXVyhbr
+oxOmK1XRjrNsI80enftK3/CWbkD+wF+8AWKVuCoZgkAm1QK4vzuYqE1NbydOwrkB
+DQRU4pUcAQgAvXPb3vhocemMEmbzv4mcB+yozXqPKcGJ3pOVjdUtdc9uQ0XPYc1Y
+2hAxzGe6iwD37fmMtK3JDB4CckPXaVa6aFaw+sZ8QGSIuagggwMV4h942kCTDIoT
+TYsIYGF8ym8qRSHE0TwwvmBvOv/JVk4/5nqsT2eMwlRFIot+HTP/0/iEpI30frqS
+/prxPdFUNJDShUGwcQgwc+ts+bB6uLFEZ7Bp7oLCkm/vTCxQhFIZrqh6EyNFIYvS
+beQQt8sHVNP64Bksrmu+wbsoH/FwJPU8omsTMpKOFvkQ7u1EZtiiGbofPXr2rAEF
+x9O7HD2ALM9jUc0bP9EqkmXVFsi1YAOVKwARAQABiQElBBgBCgAPBQJU4pUcAhsM
+BQkJZzRUAAoJECP5vG00hPFn5lIH/jtVJU5xYp9I0YKYrpdQpYeTACIedli0Pj7Z
+wpLqtfBAnPRQ9R1G//mIB3zWeoamBo4Vz40YigES18Qi3AqOQECocUAaUiMB721X
+FMkmkRJzoAtnJqTRbqfUkwGOukxtHmyV0JzlKuz/dZ3cOW0Czd6flM6MYt7s7Zw9
+4fZEZwMhwxwJJOUaZ4HifaC8QAOtipot/oMknDRJkDlcEsCooAFf5BOpO
